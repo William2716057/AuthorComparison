@@ -1,5 +1,5 @@
 import matplotlib as plt
-from spellchecker import Spellchecker
+#from spellchecker import Spellchecker
 
 region_dict = {
     "color": "colour",
@@ -24,8 +24,6 @@ region_dict = {
     "program": "programme",  
 }
 
-text_sample_1 = "path_to_file1"
-text_sample_2 = "path_to_file2"
 
 #add two text samples
 #use various algorithms to get fingerprints of each text
@@ -39,3 +37,15 @@ text_sample_2 = "path_to_file2"
 #spellcheck
 #if digit or alpha digit compare to text 2
 #sentiment analysis 
+
+text_sample_1 = "authorA.txt"
+text_sample_2 = "authorB.txt"
+
+with open(text_sample_1, "r", encoding="utf-8") as file:
+    text_sample_1 = file.read()
+    
+with open(text_sample_2, "r", encoding="utf-8") as file:
+    text_sample_2 = file.read()
+    
+#print(text_sample_1)
+#print(text_sample_2)

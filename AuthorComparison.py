@@ -68,12 +68,16 @@ sentenceLengthAuthorB = sentence_length(text_sample_2)
 total_length = sum(sentenceLengthAuthorA)
 average_A = total_length /len(sentenceLengthAuthorA)
 #print(average_A)
+total_length = sum(sentenceLengthAuthorB)
+average_B = total_length /len(sentenceLengthAuthorB)
 
 plt.figure(figsize=(10, 6))
 
-text = f"Author A:\n{average_A}"
-
+authorA_average = f"Author A:\n{average_A}"
+authorB_average = f"Author B:\n{average_B}"
 # Add the text to the plot
-plt.text(0.1, 0.5, text, fontsize=12, color='black', wrap=True, ha='left', va='center')
+plt.text(0.1, 1.1, authorA_average, fontsize=12, color='black', wrap=True, ha='left', va='center')
+plt.text(0.5, 1.1, authorB_average, fontsize=12, color='black', wrap=True, ha='left', va='center')
+
 plt.axis('off')
 plt.show()

@@ -1,5 +1,8 @@
 import matplotlib as plt
 import re
+import nltk
+nltk.download('punkt_tab')
+from nltk.tokenize import sent_tokenize, word_tokenize
 #from spellchecker import Spellchecker
 
 region_dict = {
@@ -48,19 +51,48 @@ with open(text_sample_1, "r", encoding="utf-8") as file:
 with open(text_sample_2, "r", encoding="utf-8") as file:
     text_sample_2 = file.read()
     
-def sentence_length(text1, text2): 
+
+
+def sentence_length(text1):
+    sentences = sent_tokenize(text1)
+    sentence_lengths = []  
+    for sentence in sentences:
+        words = word_tokenize(sentence)
+        sentence_lengths.append(len(words))  
+    
+    return sentence_lengths 
+
+# Call the function for text_sample_1 and print the results
+sentenceLengthAuthorA = sentence_length(text_sample_1)
+print("Author A")
+print(sentenceLengthAuthorA)
+
+# Optionally, you can call the function for text_sample_2 as well
+sentenceLengthAuthorB = sentence_length(text_sample_2)
+print("Author B")
+print(sentenceLengthAuthorB)
+#def sentence_length(text1, text2): 
         #split sentences 
         
-        two_texts = text1 + " " + text2
+        #two_texts = text1 + " " + text2
         
-        sentences = re.split(r'(?<=[.!?]) +', two_texts)
-        
-        sentence_lengths = [len(sentences) for sentence in sentences]
-        
-        return sentence_lengths
+#        sentences_1 = re.split(r'(?<=[.!?]) +', text1)
+        #text1 = sentences(two_texts)
+#        print("Author A")
+#        for sentence in sentences_1:
+            
+#            print(len(sentence))
 
-lengths = sentence_length(text_sample_1, text_sample_2)
-print(lengths)
+        #sentence_lengths = [len(sentences) for sentence in sentences]
+ #       sentences_2 = re.split(r'(?<=[.!?]) +', text2)
+#        print("Author B")
+ #       for sentence in sentences_2:
+#            print(len(sentence))
+        
+        #return sentence_lengths
+#sentence_length(text_sample_1, text_sample_2)
+#lengths = sentence_length(text_sample_1, text_sample_2)
+#print(lengths)
 
 #print(text_sample_1)
 #print(text_sample_2)

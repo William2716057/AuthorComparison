@@ -51,8 +51,6 @@ with open(text_sample_1, "r", encoding="utf-8") as file:
 with open(text_sample_2, "r", encoding="utf-8") as file:
     text_sample_2 = file.read()
     
-
-
 def sentence_length(text1):
     sentences = sent_tokenize(text1)
     sentence_lengths = []  
@@ -64,60 +62,18 @@ def sentence_length(text1):
 
 # Call the function for text_sample_1 and print the results
 sentenceLengthAuthorA = sentence_length(text_sample_1)
-#print("Author A")
-#print(sentenceLengthAuthorA)
-
-# Optionally, you can call the function for text_sample_2 as well
 sentenceLengthAuthorB = sentence_length(text_sample_2)
+#sum = for i in sentenceLength i + i
+#average = sum / len(sentenceLength) 
+total_length = sum(sentenceLengthAuthorA)
+average_A = total_length /len(sentenceLengthAuthorA)
+#print(average_A)
+
 plt.figure(figsize=(10, 6))
 
-# Plot the histogram
-plt.hist(sentenceLengthAuthorA, bins=5, color='blue', alpha=0.7)
+text = f"Author A:\n{average_A}"
 
-# Add title and labels
-#plt.title("Sentence Length Distribution - Author A")
-#plt.xlabel("Sentence Length (Words)")
-#plt.ylabel("Frequency")
-
-# Add a label with text (e.g., list of sentence lengths)
-text = f"Sentence lengths: {', '.join(map(str, sentenceLengthAuthorA))}"
-# Position the text at an appropriate location
-plt.text(15, 3, text, fontsize=10, color='black', wrap=True)
-
-# Show the plot
+# Add the text to the plot
+plt.text(0.1, 0.5, text, fontsize=12, color='black', wrap=True, ha='left', va='center')
+plt.axis('off')
 plt.show()
-#.hist(sentenceLengthAuthorA, bins=20, color='blue', alpha=0.7)  # Plot histogram
-# Add labels and title
-#plt.title("Sentence Length Distribution - Author A")
-#plt.xlabel("Sentence Length (Words)")
-#plt.ylabel("Frequency")
-
-# Display the plot
-
-#print("Author B")
-#print(sentenceLengthAuthorB)
-#def sentence_length(text1, text2): 
-        #split sentences 
-        
-        #two_texts = text1 + " " + text2
-        
-#        sentences_1 = re.split(r'(?<=[.!?]) +', text1)
-        #text1 = sentences(two_texts)
-#        print("Author A")
-#        for sentence in sentences_1:
-            
-#            print(len(sentence))
-
-        #sentence_lengths = [len(sentences) for sentence in sentences]
- #       sentences_2 = re.split(r'(?<=[.!?]) +', text2)
-#        print("Author B")
- #       for sentence in sentences_2:
-#            print(len(sentence))
-        
-        #return sentence_lengths
-#sentence_length(text_sample_1, text_sample_2)
-#lengths = sentence_length(text_sample_1, text_sample_2)
-#print(lengths)
-
-#print(text_sample_1)
-#print(text_sample_2)

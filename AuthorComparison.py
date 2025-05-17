@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import re
 import nltk
 nltk.download('punkt_tab')
@@ -64,13 +64,38 @@ def sentence_length(text1):
 
 # Call the function for text_sample_1 and print the results
 sentenceLengthAuthorA = sentence_length(text_sample_1)
-print("Author A")
-print(sentenceLengthAuthorA)
+#print("Author A")
+#print(sentenceLengthAuthorA)
 
 # Optionally, you can call the function for text_sample_2 as well
 sentenceLengthAuthorB = sentence_length(text_sample_2)
-print("Author B")
-print(sentenceLengthAuthorB)
+plt.figure(figsize=(10, 6))
+
+# Plot the histogram
+plt.hist(sentenceLengthAuthorA, bins=5, color='blue', alpha=0.7)
+
+# Add title and labels
+#plt.title("Sentence Length Distribution - Author A")
+#plt.xlabel("Sentence Length (Words)")
+#plt.ylabel("Frequency")
+
+# Add a label with text (e.g., list of sentence lengths)
+text = f"Sentence lengths: {', '.join(map(str, sentenceLengthAuthorA))}"
+# Position the text at an appropriate location
+plt.text(15, 3, text, fontsize=10, color='black', wrap=True)
+
+# Show the plot
+plt.show()
+#.hist(sentenceLengthAuthorA, bins=20, color='blue', alpha=0.7)  # Plot histogram
+# Add labels and title
+#plt.title("Sentence Length Distribution - Author A")
+#plt.xlabel("Sentence Length (Words)")
+#plt.ylabel("Frequency")
+
+# Display the plot
+
+#print("Author B")
+#print(sentenceLengthAuthorB)
 #def sentence_length(text1, text2): 
         #split sentences 
         

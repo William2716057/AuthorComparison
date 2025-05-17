@@ -1,4 +1,5 @@
 import matplotlib as plt
+import re
 #from spellchecker import Spellchecker
 
 region_dict = {
@@ -47,5 +48,19 @@ with open(text_sample_1, "r", encoding="utf-8") as file:
 with open(text_sample_2, "r", encoding="utf-8") as file:
     text_sample_2 = file.read()
     
+def sentence_length(text1, text2): 
+        #split sentences 
+        
+        two_texts = text1 + " " + text2
+        
+        sentences = re.split(r'(?<=[.!?]) +', two_texts)
+        
+        sentence_lengths = [len(sentences) for sentence in sentences]
+        
+        return sentence_lengths
+
+lengths = sentence_length(text_sample_1, text_sample_2)
+print(lengths)
+
 #print(text_sample_1)
 #print(text_sample_2)

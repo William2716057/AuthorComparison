@@ -1,8 +1,11 @@
 import matplotlib.pyplot as plt
 import re
 import nltk
+from numpy import count_nonzero
 nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize, word_tokenize
+import string
+from collections import Counter
 #from spellchecker import Spellchecker
 
 region_dict = {
@@ -63,22 +66,32 @@ def sentence_length(text1):
 # Call the function for text_sample_1 and print the results
 sentenceLengthAuthorA = sentence_length(text_sample_1)
 sentenceLengthAuthorB = sentence_length(text_sample_2)
-#sum = for i in sentenceLength i + i
-#average = sum / len(sentenceLength) 
-#total_length = sum(sentenceLengthAuthorA)
-#average_A = total_length /len(sentenceLengthAuthorA)
-#print(average_A)
-#total_length = sum(sentenceLengthAuthorB)
-#average_B = total_length /len(sentenceLengthAuthorB)
-
 average_A = sum(sentenceLengthAuthorA) / len(sentenceLengthAuthorA)
 average_B = sum(sentenceLengthAuthorB) / len(sentenceLengthAuthorB)
 
-plt.figure(figsize=(10, 6))
+#punctuation style
+def count_punctuation(text):
+    punctuation_marks = [char for char in text if char in string.punctuation]
+    return dict(Counter(punctuation_marks))
+
+authorA_punct = count_punctuation(text_sample_1)
+authorB_punct = count_punctuation(text_sample_2)
+print(authorA_punct)
+print(authorB_punct)
+
+all_puncts = sorted(set(authorA_punct.keys()).union(set(authorB_punct.keys())))
+counts_A = [authorA_punct.get(p, 0) for p in all_puncts]
+counts_B = [authorB_punct.get(p, 0) for p in all_puncts]
+
+x = range(len(all_puncts))
+
+plt.bar(x, counts_A, width=0.4, label='Author A', align='center', alpha=0.7)
+plt.bar([i + 0.4 for i in x], counts_B, width=0.4, label='Author B', align='center', alpha=0.7)
 
 authorA_average = f"Average Sentence Length Author A:\n{average_A}"
 authorB_average = f"Average Sentence Length Author B:\n{average_B}"
 # Add the text to the plot
+plt.figure(figsize=(10, 6))
 plt.text(0.1, 1.1, authorA_average, fontsize=12, color='black', wrap=True, ha='left', va='center')
 plt.text(0.5, 1.1, authorB_average, fontsize=12, color='black', wrap=True, ha='left', va='center')
 

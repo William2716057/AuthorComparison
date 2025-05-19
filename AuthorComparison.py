@@ -65,16 +65,19 @@ sentenceLengthAuthorA = sentence_length(text_sample_1)
 sentenceLengthAuthorB = sentence_length(text_sample_2)
 #sum = for i in sentenceLength i + i
 #average = sum / len(sentenceLength) 
-total_length = sum(sentenceLengthAuthorA)
-average_A = total_length /len(sentenceLengthAuthorA)
+#total_length = sum(sentenceLengthAuthorA)
+#average_A = total_length /len(sentenceLengthAuthorA)
 #print(average_A)
-total_length = sum(sentenceLengthAuthorB)
-average_B = total_length /len(sentenceLengthAuthorB)
+#total_length = sum(sentenceLengthAuthorB)
+#average_B = total_length /len(sentenceLengthAuthorB)
+
+average_A = sum(sentenceLengthAuthorA) / len(sentenceLengthAuthorA)
+average_B = sum(sentenceLengthAuthorB) / len(sentenceLengthAuthorB)
 
 plt.figure(figsize=(10, 6))
 
-authorA_average = f"Author A:\n{average_A}"
-authorB_average = f"Author B:\n{average_B}"
+authorA_average = f"Average Sentence Length Author A:\n{average_A}"
+authorB_average = f"Average Sentence Length Author B:\n{average_B}"
 # Add the text to the plot
 plt.text(0.1, 1.1, authorA_average, fontsize=12, color='black', wrap=True, ha='left', va='center')
 plt.text(0.5, 1.1, authorB_average, fontsize=12, color='black', wrap=True, ha='left', va='center')

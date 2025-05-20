@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 import re
 import nltk
 from nltk.util import ngrams
@@ -110,8 +111,22 @@ for match in matches:
     print("matches: ", match)
 
 #plt.figure(figsize=(12, 6))
-fig, grid = plt.subplots(2, 4, figsize=(16, 8))
+#fig, top = plt.subplots(2, 4, figsize=(16, 8))
+fig = plt.figure(figsize=(16, 10))
+gs = gridspec.GridSpec(3, 4, height_ratios=[1, 1, 2])  # Two rows for top grid, one for bottom bar chart
+fig.suptitle("Similarities and Differences between Authors", fontsize=16)
+# Top 2x4 grid (empty boxes for now)
+top = []
+for row in range(2):
+    for col in range(4):
+        ax = fig.add_subplot(gs[row, col])
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.set_title(f"Box {row*4 + col + 1}", fontsize=10)
+        ax.boxplot([[]])  
+        top.append(ax)
 
+#for punctuation bar chart        
 plt.bar(x, counts_A, width=0.4, label='Author A', align='center', alpha=0.7, color='skyblue')
 plt.bar([i + 0.4 for i in x], counts_B, width=0.4, label='Author B', align='center', alpha=0.7, color='salmon')
 

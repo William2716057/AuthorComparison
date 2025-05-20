@@ -130,13 +130,19 @@ for row in range(2):
 plt.bar(x, counts_A, width=0.4, label='Author A', align='center', alpha=0.7, color='skyblue')
 plt.bar([i + 0.4 for i in x], counts_B, width=0.4, label='Author B', align='center', alpha=0.7, color='salmon')
 
-plt.xticks([i + 0.2 for i in x], all_puncts, fontsize=12)
-plt.figtext(0.13, 0.98, f"Avg Sentence Length Author A: {average_A:.2f}", fontsize=10, ha='left')
-plt.figtext(0.13, 0.94, f"Avg Sentence Length Author B: {average_B:.2f}", fontsize=10, ha='left')
+#plt.xticks([i + 0.2 for i in x], all_puncts, fontsize=12)
+#plt.figtext(0.13, 0.98, f"Avg Sentence Length Author A: {average_A:.2f}", fontsize=10, ha='left')
+#plt.figtext(0.13, 0.94, f"Avg Sentence Length Author B: {average_B:.2f}", fontsize=10, ha='left')
 
 plt.title("Punctuation Style Frequency", fontsize=14)
 plt.xlabel("Punctuation Mark", fontsize=12)
 plt.ylabel("Frequency", fontsize=12)
 plt.legend()
 plt.tight_layout()
+
+insight_ax = fig.add_subplot(gs[2, :])
+insight_ax.axis('off')  # Hide axes
+insight_ax.text(0.01, 0.8, f"Avg Sentence Length Author A: {average_A:.2f}", fontsize=12, ha='left')
+insight_ax.text(0.01, 0.7, f"Avg Sentence Length Author B: {average_B:.2f}", fontsize=12, ha='left')
+
 plt.show()

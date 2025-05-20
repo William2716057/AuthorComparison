@@ -27,4 +27,14 @@ A Python script that helps analyse and compare writing styles between two text s
 - Useful for finding common phrases or quotes that individuals may use in writing. 
 
 ### 5. Function word usage 
-- 
+- Focuses on common grammatical words that serve to express relationship between other words ("the", "and", "but", "or", "if", "when", "while", "as", "to", "in", "of", "on", "with", "by", "at", "for").
+- These can serve as stylistic fingerprints.
+- Visual comparison can show which words are favored by each author.
+
+### 6. Lexical Richness
+- Calculates the Type-Token Ratio (TTR):
+- This can show richness and complexity in vocabulary
+```
+TTR = Unique Words / Total Words
+```
+- Higher values imply varied vocabulary; lower values may suggest repetition or simplicity.

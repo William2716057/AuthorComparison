@@ -47,3 +47,12 @@ TTR = Unique Words / Total Words
 - Summary insights with common phrases and average sentence lengths
 
 ## Usage
+1. Place your two text files in the same directory (e.g., authorA.txt and authorB.txt).
+2. install dependencies
+```
+pip install matplotlib nltk numpy
+```
+3. Run the script in Python:
+```
+python3 AuthorComparison.py
+```

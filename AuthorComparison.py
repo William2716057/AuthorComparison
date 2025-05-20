@@ -42,10 +42,11 @@ region_dict = {
 #average sentence length
 #punctuation style
 #word sequence matches
+#function words
 #identify region
 #spellcheck
 #if digit or alpha digit compare to text 2
-#sentiment analysis 
+#sentiment analysis
 
 text_sample_1 = "authorA.txt"
 text_sample_2 = "authorB.txt"
@@ -91,6 +92,7 @@ counts_A = [authorA_punct.get(p, 0) for p in all_puncts]
 counts_B = [authorB_punct.get(p, 0) for p in all_puncts]
 x = range(len(all_puncts))
 
+#matching phrases or quotes commonly found between two authors
 def sequence_matches(text1, text2, min_len=3, max_len=6):
     tokens1 = preprocess(text1)
     tokens2 = preprocess(text2)
@@ -110,11 +112,29 @@ matches = sequence_matches(text_sample_1, text_sample_2)
 for match in matches:
     print("matches: ", match)
 
+#function words
+function_words = set(["the", "and", "but", "or", "if", "when", "while", "as", "to", "in", "of", "on", "with", "by", "at", "for"])
+
+def function_word_counts(text):
+    tokens = preprocess(text)
+    counter = Counter(w for w in tokens if w in function_words)
+    return counter
+
+
+function_A = function_word_counts(text_sample_1)
+function_B = function_word_counts(text_sample_2)
+top_func = sorted(set(function_A.keys()).union(function_B.keys()))
+
+counts_func_A = [function_A.get(w, 0) for w in top_func]
+counts_func_B = [function_B.get(w, 0) for w in top_func]
+
 #plt.figure(figsize=(12, 6))
 #fig, top = plt.subplots(2, 4, figsize=(16, 8))
 fig = plt.figure(figsize=(16, 10))
 gs = gridspec.GridSpec(3, 4, height_ratios=[1, 1, 2])  # Two rows for top grid, one for bottom bar chart
 fig.suptitle("Similarities and Differences between Authors", fontsize=16)
+
+
 # Top 2x4 grid (empty boxes for now)
 top = []
 for row in range(2):
@@ -144,5 +164,15 @@ insight_ax = fig.add_subplot(gs[2, :])
 insight_ax.axis('off')  # Hide axes
 insight_ax.text(0.01, 0.8, f"Avg Sentence Length Author A: {average_A:.2f}", fontsize=12, ha='left')
 insight_ax.text(0.01, 0.7, f"Avg Sentence Length Author B: {average_B:.2f}", fontsize=12, ha='left')
+
+ax = top[0]
+ax.clear()
+x = range(len(top_func))
+ax.bar(x, counts_func_A, width=0.4, label='A', align='center', alpha=0.7, color='skyblue')
+ax.bar([i + 0.4 for i in x], counts_func_B, width=0.4, label='B', align='center', alpha=0.7, color='salmon')
+ax.set_xticks([i + 0.2 for i in x])
+ax.set_xticklabels(top_func, rotation=45)
+ax.set_title("Function Word Usage")
+
 
 plt.show()

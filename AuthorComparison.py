@@ -43,6 +43,7 @@ region_dict = {
 #punctuation style
 #word sequence matches
 #function words
+#lexical richness
 #identify region
 #spellcheck
 #if digit or alpha digit compare to text 2
@@ -128,6 +129,14 @@ top_func = sorted(set(function_A.keys()).union(function_B.keys()))
 counts_func_A = [function_A.get(w, 0) for w in top_func]
 counts_func_B = [function_B.get(w, 0) for w in top_func]
 
+#lexical richness 
+def type_token(text):
+    tokens = preprocess(text)
+    return len(set(tokens)) / len(tokens)
+
+ratio_A = type_token(text_sample_1)
+ratio_B = type_token(text_sample_2)
+
 #plt.figure(figsize=(12, 6))
 #fig, top = plt.subplots(2, 4, figsize=(16, 8))
 fig = plt.figure(figsize=(16, 10))
@@ -174,5 +183,10 @@ ax.set_xticks([i + 0.2 for i in x])
 ax.set_xticklabels(top_func, rotation=45)
 ax.set_title("Function Word Usage")
 
+ax = top[1]
+ax.clear()
+ax.bar(["Author A", "Author B"], [ratio_A, ratio_B], color=["skyblue", "salmon"])
+ax.set_title("Lexical Richness ")
+ax.set_ylim(0, 1)
 
 plt.show()

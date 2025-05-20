@@ -169,11 +169,16 @@ plt.ylabel("Frequency", fontsize=12)
 plt.legend()
 plt.tight_layout()
 
+#other insights
 insight_ax = fig.add_subplot(gs[2, :])
 insight_ax.axis('off')  # Hide axes
 insight_ax.text(0.01, 0.8, f"Avg Sentence Length Author A: {average_A:.2f}", fontsize=12, ha='left')
 insight_ax.text(0.01, 0.7, f"Avg Sentence Length Author B: {average_B:.2f}", fontsize=12, ha='left')
+match_string = ", ".join(matches)
+#should add some counts and display visually
+insight_ax.text(0.01, 0.5, f"Phrases found in both texts:\n{match_string}", fontsize=12, wrap=True)
 
+#grids
 ax = top[0]
 ax.clear()
 x = range(len(top_func))

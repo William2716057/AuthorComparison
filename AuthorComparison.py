@@ -94,14 +94,17 @@ plt.bar(x, counts_A, width=0.4, label='Author A', align='center', alpha=0.7, col
 plt.bar([i + 0.4 for i in x], counts_B, width=0.4, label='Author B', align='center', alpha=0.7, color='salmon')
 
 plt.xticks([i + 0.2 for i in x], all_puncts, fontsize=12)
+plt.figtext(0.13, 0.98, f"Avg Sentence Length Author A: {average_A:.2f}", fontsize=10, ha='left')
+plt.figtext(0.13, 0.94, f"Avg Sentence Length Author B: {average_B:.2f}", fontsize=10, ha='left')
+
 plt.title("Punctuation Style Frequency", fontsize=14)
 plt.xlabel("Punctuation Mark", fontsize=12)
 plt.ylabel("Frequency", fontsize=12)
 plt.legend()
 
 # Add average sentence length as plot annotation
-plt.figtext(0.13, 0.85, f"Avg Sentence Length A: {average_A:.2f}", fontsize=10, ha='left')
-plt.figtext(0.13, 0.80, f"Avg Sentence Length B: {average_B:.2f}", fontsize=10, ha='left')
+#plt.figtext(0.13, 0.85, f"Avg Sentence Length A: {average_A:.2f}", fontsize=10, ha='left')
+#plt.figtext(0.13, 0.80, f"Avg Sentence Length B: {average_B:.2f}", fontsize=10, ha='left')
 
 plt.tight_layout()
 plt.show()

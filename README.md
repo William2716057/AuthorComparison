@@ -38,3 +38,12 @@ A Python script that helps analyse and compare writing styles between two text s
 TTR = Unique Words / Total Words
 ```
 - Higher values imply varied vocabulary; lower values may suggest repetition or simplicity.
+
+### 7. Visual Comparison (via matplotlib)
+- Bar charts and subplots clearly display:
+- Punctuation frequency
+- Function word usage
+- Lexical richness
+- Summary insights with common phrases and average sentence lengths
+
+## Usage

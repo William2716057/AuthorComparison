@@ -56,3 +56,5 @@ pip install matplotlib nltk numpy
 ```
 python3 AuthorComparison.py
 ```
+
+![sample](https://github.com/user-attachments/assets/d8c2af76-9829-49a7-bec9-658dbf5dc040)

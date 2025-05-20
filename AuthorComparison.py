@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import re
 import nltk
+from nltk.util import ngrams
 from numpy import count_nonzero
 nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize, word_tokenize
@@ -54,6 +55,12 @@ with open(text_sample_1, "r", encoding="utf-8") as file:
 with open(text_sample_2, "r", encoding="utf-8") as file:
     text_sample_2 = file.read()
     
+#preprocess text removing punctuation and capitalisation
+def preprocess(text):
+    text = text.lower()
+    text = text.translate(str.maketrans('', '', string.punctuation))
+    return word_tokenize(text)
+
 def sentence_length(text1):
     sentences = sent_tokenize(text1)
     sentence_lengths = []  
@@ -76,17 +83,31 @@ def count_punctuation(text):
 
 authorA_punct = count_punctuation(text_sample_1)
 authorB_punct = count_punctuation(text_sample_2)
-print(authorA_punct)
-print(authorB_punct)
-
+#print(authorA_punct)
+#print(authorB_punct)
 all_puncts = sorted(set(authorA_punct.keys()).union(set(authorB_punct.keys())))
 counts_A = [authorA_punct.get(p, 0) for p in all_puncts]
 counts_B = [authorB_punct.get(p, 0) for p in all_puncts]
-
 x = range(len(all_puncts))
 
-#plt.bar(x, counts_A, width=0.4, label='Author A', align='center', alpha=0.7)
-#plt.bar([i + 0.4 for i in x], counts_B, width=0.4, label='Author B', align='center', alpha=0.7)
+def sequence_matches(text1, text2, min_len=3, max_len=6):
+    tokens1 = preprocess(text1)
+    tokens2 = preprocess(text2)
+
+    matches = set()
+    
+    for n in range(min_len, max_len +1):
+        ngrams1 = set(ngrams(tokens1, n))
+        ngrams2 = set(ngrams(tokens2, n))
+        
+        common = ngrams1.intersection(ngrams2)
+        matches.update(common)
+        
+    return [' '.join(ng) for ng in sorted(matches)]
+
+matches = sequence_matches(text_sample_1, text_sample_2)
+for match in matches:
+    print("matches: ", match)
 
 plt.figure(figsize=(12, 6))
 

@@ -109,7 +109,8 @@ matches = sequence_matches(text_sample_1, text_sample_2)
 for match in matches:
     print("matches: ", match)
 
-plt.figure(figsize=(12, 6))
+#plt.figure(figsize=(12, 6))
+fig, grid = plt.subplots(2, 4, figsize=(16, 8))
 
 plt.bar(x, counts_A, width=0.4, label='Author A', align='center', alpha=0.7, color='skyblue')
 plt.bar([i + 0.4 for i in x], counts_B, width=0.4, label='Author B', align='center', alpha=0.7, color='salmon')
@@ -122,10 +123,5 @@ plt.title("Punctuation Style Frequency", fontsize=14)
 plt.xlabel("Punctuation Mark", fontsize=12)
 plt.ylabel("Frequency", fontsize=12)
 plt.legend()
-
-# Add average sentence length as plot annotation
-#plt.figtext(0.13, 0.85, f"Avg Sentence Length A: {average_A:.2f}", fontsize=10, ha='left')
-#plt.figtext(0.13, 0.80, f"Avg Sentence Length B: {average_B:.2f}", fontsize=10, ha='left')
-
 plt.tight_layout()
 plt.show()

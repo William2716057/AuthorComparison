@@ -4,14 +4,27 @@ A Python script that helps analyse and compare writing styles between two text s
 
 ## Features
 
-1. Preprocessing
+### 1. Preprocessing
 - Converts all text to lowercase.
 - Removes punctuation.
 - Tokenizes text using NLTK's word_tokenize for consistent word-level analysis.
 
-2. Sentence Length Analysis
+### 2. Sentence Length Analysis
 - Tokenizes sentences using NLTK's sent_tokenize.
 - Calculates the number of words per sentence.
 - Computes the average sentence length for each author.
 - Useful to detect verbosity or concise writing patterns.
 
+### 3. Punctuation Style
+- Counts the frequency of each punctuation mark such as question marks, periods or commas.
+- Compares usage patterns visually between both samples.
+- Helps detect stylistic nuances such as the use of ellipses, dashes, or exclamation points.
+
+### 4. Matching Phrase Sequences
+
+-Generates overlapping n-grams (3–6 word phrases) from both texts.
+- Identifies common multi-word expressions or repeated structures.
+- Useful for finding common phrases or quotes that individuals may use in writing. 
+
+### 5. Function word usage 
+- 
